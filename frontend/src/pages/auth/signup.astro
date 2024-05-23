@@ -1,0 +1,29 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import InputText from "../../components/Principal/InputText.astro";
+import Button from "../../components/Principal/Button.astro";
+import FullLogo from '../../components/Principal/fullLogo.astro'
+
+import {Signin} from "../../helpers/auth/signin";
+
+function click(){
+    console.log("click")
+}
+---
+
+<MainLayout title="EMessage-Register">
+    <!--<Image src={logo} alt="Logo Image E-message" class="m-auto mt-6 w-36"/> -->
+    <FullLogo classW="m-auto mt-6 w-36 flex items-center gap-3 select-none"/>
+    <h2 class="mt-4 text-cprimary font-bold text-2xl text-center">Register your account</h2>
+
+    <div class="mt-24 flex flex-col gap-11">
+        <InputText typeI="text" label="Email" placeholder="Pleace enter your email"/>
+        <InputText typeI="password" label="Password" placeholder="Pleace enter your password"/>
+        <InputText typeI="password" label="Confirm Password" placeholder="Pleace enter your password again"/>
+    </div>
+
+    <div class="mt-14 flex flex-col gap-2">
+        <a href="/auth/signin" class="text-xs font-normal text-[#494F7A] dark:text-[#D6D9ED] ml-[10%]">Already Registered?</a>
+        <Button text="Submit" @click={click}/>
+    </div>
+</MainLayout>
