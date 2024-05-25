@@ -1,11 +1,14 @@
 ---
 import Layout from '../layouts/MainLayout.astro';
 import Button from '../components/Principal/Button.astro';
+const icon = '/icons/bell.svg';
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<p>Ahora si se viene lo chido</p>
-		<Button text='Hola Mundo'/>
+		<div class="absolute w-full bottom-7">
+			<Button text='Hola Mundo' icon={icon}/>
+		</div>
+		
 	</main>
 </Layout>
