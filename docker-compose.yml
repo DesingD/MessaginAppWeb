@@ -1,23 +1,56 @@
-version: '3'
-
 services:
   backend:
-    image: backend,
-    
-    
+    build: './backend'
+    depends_on:
+      - mongodb
+      - postgres
+    ports: 
+      - "3000:3000"
+    volumes:
+      - './backend:/app'
+      - '/app/node_modules'
+    env_file: './backend/.env'
+    networks:
+      - database
+      - backend
 
-  frontend:
-    image: frontend-image
+  #frontend:
+   # build: './frontend'
+    #depends_on:
+     # - backend
+   # ports:
+    #  - "4321:4321"
+    #networks:
+     # - backend
     # Configuración del frontend...
 
   mongodb:
     image: mongo
-    # Configuración de MongoDB...
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=messaging
+    ports:
+      - "27017:27017"
+    networks:
+      - database
 
   postgres:
     image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: messaging
+    networks:
+      - database
     # Configuración de PostgreSQL...
 
 networks:
-  messaging-network:
+  database:
+    driver: bridge
+  backend:
     driver: bridge

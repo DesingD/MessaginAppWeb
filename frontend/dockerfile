@@ -15,6 +15,9 @@ RUN pnpm install
 # Copia el resto de los archivos de la aplicación al directorio de trabajo
 COPY . .
 
+# Compila la aplicación
+RUN pnpm run build
+
 # Expone el puerto en el que se ejecutará la aplicación
 EXPOSE 4321
 
