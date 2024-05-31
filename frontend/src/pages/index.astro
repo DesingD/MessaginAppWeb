@@ -2,13 +2,24 @@
 import Layout from '../layouts/MainLayout.astro';
 import Button from '../components/Principal/Button.astro';
 const icon = '/icons/bell.svg';
+import Nav from '../components/Index/nav.astro';
+import Actions from '../components/Index/actions.astro';
+import Search from '../components/Index/vue/search.vue';
+import Chats from '../components/Index/vue/chats.vue';
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="EMessage-Chats">
+	<nav class="flex justify-between">
+		<Nav />
+		<Actions/>
+	</nav>
 	<main>
 		<div class="absolute w-full bottom-7">
 			<Button text='Hola Mundo' icon={icon}/>
 		</div>
-		
+		<div class="">
+			<Search client:load/>
+			<Chats client:load/>
+		</div>
 	</main>
 </Layout>

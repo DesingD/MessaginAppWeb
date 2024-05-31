@@ -11,9 +11,14 @@ export default {
 				// Tema 1
 				cprimary: "#0086EA",
 				cblack: "#0E1114",
+				borderi: "#CDD5DE",
+				tdescrip: "#616C76",
+				dcolor: "#8FA0AF",
 
 				// Tema 2
 				bgColor: "#181C20",
+				borderidark: "#4A545C",
+				
 			}
 		},
 	},
