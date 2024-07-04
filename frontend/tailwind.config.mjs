@@ -18,6 +18,12 @@ export default {
 				// Tema 2
 				bgColor: "#181C20",
 				borderidark: "#4A545C",
+				darkTitleChat: "#EEF1F4",
+				darkDesChat: "#ABBBC9",
+				darkInputSend: "#21262B",
+				darkChatPrimary: "#778592",
+				darkBgInputSend: "#353C43",
+
 				
 			}
 		},
