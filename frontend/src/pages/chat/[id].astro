@@ -43,12 +43,16 @@ const id = Astro.params
 		<Actions icon={icon} user1={user1} icon2={icon2}/>
 	</nav>
 
-    <main class="absolute w-full buttom-0">
-        <Messsages image={user2}/>
+    <main class="flex flex-col">
+        <div class="h-5/6">
+            <Messsages image={user2}/>
+        </div>
+        
+        <div class="w-full absolute bottom-7">
+            <SendMessage client:load/>
+        </div>
     </main>
 
-    <div class="absolute w-full bottom-7">
-        <SendMessage client:load/>
-    </div>
+    
     
 </MainLayout>
