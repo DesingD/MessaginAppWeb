@@ -1,5 +1,6 @@
 const {pool} = require('../../config/connectPostgres')
 const bcrypt = require('bcrypt')
+const {v4: uuidv4 } = require('uuid')
 
 const Register = async(req, res) => {
     const {username, password, email, profile_image} = req.body;
@@ -10,10 +11,13 @@ const Register = async(req, res) => {
         if(user.rows.length > 0){
             return res.status(400).json({ message: 'User already exists'})
         }
+
+        //create id
+        const id = uuidv4();
         
         const hashedPassword = await bcrypt.hash(password, 10);
-        const result = await pool.query('INSERT INTO users (username, password, email, profile_image) VALUES ($1, $2, $3, $4) RETURNING *' ,
-            [username, hashedPassword, email, profile_image]
+        const result = await pool.query('INSERT INTO users (id, username, password, email, profile_image) VALUES ($1, $2, $3, $4, $5) RETURNING *' ,
+            [id,username, hashedPassword, email, profile_image]
         );
         res.status(201).json(result.rows[0]);
     }catch ( error ){

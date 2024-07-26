@@ -10,13 +10,22 @@ const forgotPassword = async (req, res) => {
         if(user.rows.length === 0){
             return res.status(400).json({ message: 'User not found'})
         }
+
         const subject = 'Link Reset Password'
 
         const code = Math.floor(100000 + Math.random() * 900000);
+
+        const expirationDate = new Date();
+        expirationDate.setMinutes(expirationDate.getMinutes() + 5);
+        
+
+        //Poner el token en la base de datos
+        await pool.query('INSERT INTO tokens (token_type, user_id, code, expiration_date) VALUES ($1, $2, $3, $4)', ['1', user.rows[0].id, code, expirationDate])
+
         
 
         //Token de reseteo
-        const tokenReset = jwt.sign({email, code}, 'secret', {expiresIn: '5m'})
+        const tokenReset = jwt.sign({user: user.rows[0].id, code}, process.env.SECRET_KEY, {expiresIn: '15m'})
         const linkReset = `http://localhost:3000/reset/${tokenReset}`
 
         const text = `Este es el link para resetear tu contraseña: ${linkReset}`

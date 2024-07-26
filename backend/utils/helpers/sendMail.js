@@ -7,13 +7,13 @@ const sendMail = (email, subject, text, html) => {
             port: 587,
             secure: false,
             auth: {
-                user: 'designdevinc@outlook.com',
-                pass: 'mjcdvzukpskgheko'
+                user: process.env.OUTLOOK_EMAIL,
+                pass: process.env.OUTLOOK_PASS
             }
         })
     
         let mailOptions = {
-            from: 'DesignDevINC@outlook.com',
+            from: process.env.OUTLOOK_EMAIL,
             to: `${email}`,
             subject: `${subject}`,
             text: `${text}`,
