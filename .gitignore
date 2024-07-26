@@ -20,6 +20,10 @@ backend/pnpm-debug.log*
 frontend/pnpm-debug.log*
 backend/pnpm-lock.yaml
 frontend/pnpm-lock.yaml
+backend/package-lock.json
+
+#Store 
+backend/.pnpm-store/
 
 # environment variables
 backend/.env
