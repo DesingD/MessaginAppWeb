@@ -1,8 +1,7 @@
 const authRoutes = require('./auth')
+const confirmRoutes = require('./confirm')
 module.exports = (app) => {
-    app.get('/', (req, res) => {
-        res.send('Hello World')
-    })
 
     authRoutes(app)
+    confirmRoutes(app)
 }

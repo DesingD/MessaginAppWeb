@@ -6,7 +6,8 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     profile_image VARCHAR(255),
-    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_email_confirmed BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE messages (

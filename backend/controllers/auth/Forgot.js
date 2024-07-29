@@ -16,7 +16,7 @@ const forgotPassword = async (req, res) => {
         const code = Math.floor(100000 + Math.random() * 900000);
 
         const expirationDate = new Date();
-        expirationDate.setMinutes(expirationDate.getMinutes() + 5);
+        expirationDate.setMinutes(expirationDate.getMinutes() + 15);
         
 
         //Poner el token en la base de datos
