@@ -3,11 +3,11 @@
         <!--Images-->
         <div class="">
             
-            <img :src="urlImage" alt="" class="h-10 w-10 rounded-full object-cover">
+            <img :src="urlImage" alt="" class="h-10 w-10  rounded-full object-cover">
             
         </div>
         <!--Data user-->
-        <div class="ml-2 w-3/4">
+        <div class="ml-2 w-2/5">
             <h3 class="font-semibold text-sm text-cblack dark:text-darkTitleChat">{{ nameUser }}</h3>
             <div class="">
                 <p class="text-xs truncate w-7/12 text-tdescrip font-normal"><span v-if="lastMessage.send" class="text-cprimary">You: </span>{{ lastMessage.message }}</p>
@@ -15,7 +15,7 @@
             </div>
         </div>
         <!--Info user-->
-        <div class="absolute right-[8%] flex flex-col justify-end items-end">
+        <div class="w-1/2 flex flex-col justify-end items-end ">
             <div class="">
                 <p class="text-xs text-dcolor dark:text-darkDesChat">{{ lastConnection }}</p>
             </div>

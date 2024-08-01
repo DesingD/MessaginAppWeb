@@ -8,20 +8,25 @@ import Search from '../components/Index/vue/search.vue';
 import Chats from '../components/Index/vue/chats.vue';
 const iconS = '/icons/settings.svg';
 const user1 = '/users/user1.jpg'
+import UserConfig from '../components/Principal/Vue/userConfig.vue';
+
+ 
 ---
 
 <Layout title="EMessage-Chats">
-	<nav class="flex justify-between">
+	<nav class="flex justify-between bg-gray-800">
 		<Nav />
 		<Actions icon={iconS} user1={user1}/>
 	</nav>
 	<main>
-		<div class="absolute w-full bottom-7">
+		<!--  <div class="absolute w-full bottom-7">
 			<Button text='Hola Mundo' icon={icon}/>
-		</div>
-		<div class="">
+		</div>-->	
+		 <UserConfig />
+		<div class="w-1/4 bg-gray-800 h-screen"> <!-- -->
 			<Search client:load/>
 			<Chats client:load/>
 		</div>
+		 
 	</main>
 </Layout>

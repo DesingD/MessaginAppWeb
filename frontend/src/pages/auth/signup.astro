@@ -1,14 +1,22 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 import FullLogo from '../../components/Principal/fullLogo.astro';
+import Portada from '../../components/Principal/port.astro';
 import Ssignup from "../../components/User/Signup.vue";
 
 ---
 
 <MainLayout title="EMessage-Register">
-    <!--<Image src={logo} alt="Logo Image E-message" class="m-auto mt-6 w-36"/> -->
-    <FullLogo classW="m-auto mt-6 w-36 flex items-center gap-3 select-none"/>
-    <h2 class="mt-4 text-cprimary font-bold text-2xl text-center">Register your account</h2>
 
+ <!--<Image src={logo} alt="Logo Image E-message" class="m-auto mt-6 w-36"/> -->
+    <div class="w-2/4 ml-auto "> 
+    <div class="w-3/5 m-auto"><FullLogo classW="flex gap-1 select-none"/></div> 
+    <h2 class="mt-4 w-5/6 text-cprimary font-bold text-5xl text-center">Register your account</h2>
     <Ssignup client:load></Ssignup>
+     </div>
+
+<div class="ml-auto">
+    <Portada classW="w-2/4"/>
+</div>
+
 </MainLayout>

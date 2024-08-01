@@ -1,0 +1,14 @@
+---
+import Porta from '../../../public/fondo.jpeg'
+import { Image } from 'astro:assets';
+interface Props {
+	classW: string;
+}
+
+const { classW } = Astro.props;
+---
+
+<div class={classW}>
+    <Image src={Porta} alt="portada e-message" class="w-1/4"/>
+    
+</div>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="">
         <Chat v-for="(user, index) in users" :urlImage="user.urlImage" :nameUser="user.nameUser" :lastMessage="user.lastMessage" :messageNotRead="user.messageNotRead" :lastConnection="user.lastConnection" :key="index"/>
     </div>
 </template>

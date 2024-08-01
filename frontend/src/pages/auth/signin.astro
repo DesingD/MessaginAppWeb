@@ -5,8 +5,9 @@ import Ssignin from "../../components/User/Signin.vue";
 ---
 
 <MainLayout title="EMessage-Login">
-    <FullLogo classW="m-auto mt-6 w-36 flex items-center gap-3 select-none"/>
-    <h2 class="mt-4 text-cprimary font-bold text-2xl text-center">SiignIn</h2>
-
-    <Ssignin client:load></Ssignin>
-</MainLayout>
+    <div class="w-1/2">
+        <FullLogo classW="m-auto mt-6 w-4/5 flex items-center gap-3 select-none"/>
+        <h2 class="w-3/5 m-auto gap-1 mt-4 text-cprimary font-bold text-5xl text-left">Sign In</h2>
+        <Ssignin client:load></Ssignin> 
+    </div>
+ </MainLayout>
