@@ -1,6 +1,7 @@
 const {pool} = require('../../config/connectPostgres')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const createId = require('../../utils/helpers/createId')
 
 const Login = async (req, res) => {
     const { email, password } = req.body;
@@ -19,8 +20,17 @@ const Login = async (req, res) => {
         }
 
         // Creando el token
-        const tokenLogin = jwt.sign({user: user.rows[0].id}, process.env.SECRET_KEY)
+        const code = Math.floor(100000 + Math.random() * 900000);
+        const tokenLogin = jwt.sign({user: user.rows[0].id, code: code}, process.env.SECRET_KEY)
 
+        
+        const expirationDate = new Date();
+        expirationDate.setMinutes(expirationDate.getUTCDay() + 2);
+
+        // Creando el id para el token
+        const id = createId();
+        //Poner el token en la base de datos
+        await pool.query('INSERT INTO tokens (id, token_type, user_id, code, expiration_date) VALUES ($1, $2, $3, $4, $5)', [id, '2', user.rows[0].id, code, expirationDate])
 
         res.status(200).json({ message: 'User logged in', token: tokenLogin});
     }catch(error){

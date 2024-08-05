@@ -14,11 +14,22 @@ CREATE TABLE messages (
     id VARCHAR(255) NOT NULL PRIMARY KEY,
     sender_id VARCHAR(255) NOT NULL,
     receiver_id VARCHAR(255) NOT NULL,
+    chat_id VARCHAR(255) NOT NULL,
     message_text VARCHAR(255),
     create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sender_id) REFERENCES users(id),
-    FOREIGN KEY (receiver_id) REFERENCES users(id)
+    FOREIGN KEY (receiver_id) REFERENCES users(id),
+    FOREIGN KEY (chat_id) REFERENCES chats(id)
 );
+CREATE TABLE chats {
+    id VARCHAR(255) NOT NULL PRIMARY KEY,
+    user_id1 VARCHAR(255) NOT NULL,
+    user_id2 VARCHAR(255) NOT NULL,
+    chat_name VARCHAR(255) NOT NULL,
+    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+
+}
 CREATE TABLE tokens (
     id VARCHAR(255) NOT NULL PRIMARY KEY,
     token_type VARCHAR(255) NOT NULL,

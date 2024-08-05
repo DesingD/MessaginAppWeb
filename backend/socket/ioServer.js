@@ -1,11 +1,10 @@
-const {Server} = require('socket.io')
+const WebSocket = require('ws');
+const connection = require('./connection')
 
-const ioServer = (server) => {
+const WsServer = (server) => {
+    const wss = new WebSocket.Server({server})
 
-    const io = new Server (server,{
-        connectionStateRecovery: {}
-    })
-    return io
+    connection(wss)
 }
 
-module.exports = ioServer
+module.exports = {WsServer}

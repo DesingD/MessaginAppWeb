@@ -1,6 +1,7 @@
 const { pool } = require("../../config/connectPostgres");
 const sendMail = require("../../utils/helpers/sendMail")
 const jwt = require('jsonwebtoken')
+const createId = require('../../utils/helpers/createId')
 
 const forgotPassword = async (req, res) => {
     //verificar si existe el correo en la base de datos
@@ -16,11 +17,16 @@ const forgotPassword = async (req, res) => {
         const code = Math.floor(100000 + Math.random() * 900000);
 
         const expirationDate = new Date();
-        expirationDate.setMinutes(expirationDate.getMinutes() + 15);
+        expirationDate.setMinutes(expirationDate.getMinutes() + 5);
         
 
+        //create id for token
+        const id = createId();
+
         //Poner el token en la base de datos
-        await pool.query('INSERT INTO tokens (token_type, user_id, code, expiration_date) VALUES ($1, $2, $3, $4)', ['1', user.rows[0].id, code, expirationDate])
+    
+        await pool.query('INSERT INTO tokens (id ,token_type, user_id, code, expiration_date) VALUES ($1, $2, $3, $4, $5)', [id,'1', user.rows[0].id, code, expirationDate])
+        
 
         
 
@@ -45,11 +51,11 @@ const forgotPassword = async (req, res) => {
             return res.status(200).json({ message: 'Email sent' });
         } catch (error) {
             console.error('Error sending email: ', error);
-            return res.status(500).json({ message: 'Error sending email' });
+            return res.status(500).json({ message: 'Error sending email1'});
         }
         
     }catch(error){
-        res.status(500).json({ message: 'Error sending email'})
+        res.status(500).json({ message: 'Error sending email2'})
     }
 }
 
