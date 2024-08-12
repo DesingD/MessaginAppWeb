@@ -1,34 +1,39 @@
-const nodemailer = require('nodemailer')
+const sgMail = require('@sendgrid/mail')
 
-const sendMail = (email, subject, text, html) => {
-   
-        let transporter = nodemailer.createTransport({
-            host: 'smtp-mail.outlook.com',
-            port: 587,
-            secure: false,
-            auth: {
-                user: process.env.OUTLOOK_EMAIL,
-                pass: process.env.OUTLOOK_PASS
-            }
-        })
+const sendMail = async (email, dinamicData, templateId) => {
     
-        let mailOptions = {
-            from: process.env.OUTLOOK_EMAIL,
-            to: `${email}`,
-            subject: `${subject}`,
-            text: `${text}`,
-            html: `${html}`
-        };
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     
-        //envio de correo
-        transporter.sendMail(mailOptions, function(error, info){
-            if(error){
-                reject(error)
-            } else{
-                resolve(info.response)
-            }
-        })
+    //normal email
+    /*
+    const msg = {
+      to: `${email}`,
+      from: process.env.OUTLOOK_EMAIL,
+      subject: `${subject}`,
+      text: `${text}`,
+      html: `${html}`,
+    };*/
+
+    //email with template
+    const msg = {
+      to: `${email}`,
+      from: process.env.OUTLOOK_EMAIL,
+      templateId: `${templateId}`,
+      dynamic_template_data: dinamicData,
+    };
     
+    sgMail
+      .send(msg)
+      .then(() => {
+        console.log("Email sent");
+        return "Email sent"
+        
+      })
+      .catch((error) => {
+        console.error(error);
+        return error
+        
+      });
     
 }
 

@@ -1,4 +1,4 @@
--- Active: 1722634479483@@127.0.0.1@5432@messaging
+-- Active: 1723253997968@@127.0.0.1@5432@messaging
 -- Date: 2021-11-14 17:32:00
 CREATE TABLE users (
     id VARCHAR(255) NOT NULL PRIMARY KEY,

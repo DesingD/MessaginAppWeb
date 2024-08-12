@@ -44,9 +44,19 @@ const forgotPassword = async (req, res) => {
             <p>El link expira en 5 minutos</p>
         `
 
+        const dinamicData = {
+          subject: `${subject}`,
+          Nombre: `${user.rows[0].username}`,
+          Link_reset: `${linkReset}`,
+        };
+
         //enviando el correo
         try {
-            const response = await sendMail(email, subject, text, html);
+            const response = await sendMail(
+              email,
+              dinamicData,
+              process.env.SENDGRID_TEMPLATE_ID_RESET_PASS
+            );
             console.log('Email sent: ', response);
             return res.status(200).json({ message: 'Email sent' });
         } catch (error) {

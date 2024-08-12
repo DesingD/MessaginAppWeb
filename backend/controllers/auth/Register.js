@@ -41,17 +41,22 @@ const Register = async(req, res) => {
 
             const text = `Este es el link para confirmar tu cuenta: ${linkConfirmation}`
 
-            const html = `
+            /*const html = `
                 <h1>Link para confirmar tu cuenta</h1>
                 <p>Este es el link para confirmar tu cuenta:</p>
                 <a href="${linkConfirmation}">Link Confirm account</a>
                 <p>Si no solicitaste la confirmacion de cuenta, ignora este mensaje</p>
                 <p>El link expira en 2 días</p>
-            `
+            `*/
+            const dinamicData = {
+              subject: `${subject}`,
+              Nombre: `${username}`,
+              activation_link: `${linkConfirmation}`,
+            };
 
             //enviando el correo
             try{
-                const response = await sendMail(email, subject, text, html);
+                const response = await sendMail(email, dinamicData, process.env.SENDGRID_TEMPLATE_ID_REGISTER);
                 console.log('Email sent: ', response);
                 res.status(201).json({ message: 'User registered' , email: 'Email sent' });
             }catch(error){
