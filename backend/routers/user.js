@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const { pool } = require('../config/connectPostgres')
 const createId = require('../utils/helpers/createId')
 const GetAll = require('../controllers/user/GetAll')
+const GetOne = require('../controllers/user/GetOne')
 
 const user = (app) => {
     app.post('/new/friend', async(req,res) => {
@@ -25,6 +26,9 @@ const user = (app) => {
     })
     app.get('/all/users', (req,res) => {
         GetAll(req,res)
+    })
+    app.get('/one/user', async(req,res) => {
+        GetOne(req,res)
     })
 }
 module.exports = user

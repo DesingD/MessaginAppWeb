@@ -14,14 +14,19 @@ services:
       - database
       - backend
 
-  #frontend:
-   # build: './frontend'
-    #depends_on:
-     # - backend
-   # ports:
-    #  - "4321:4321"
-    #networks:
-     # - backend
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: dockerfile.dev
+    depends_on:
+      - backend
+    ports:
+      - "4321:4321"
+    volumes:
+      - './frontend:/app'
+      - '/app/node_modules'
+    networks:
+      - backend
     # Configuración del frontend...
 
   mongodb:

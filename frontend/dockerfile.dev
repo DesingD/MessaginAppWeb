@@ -1,0 +1,22 @@
+# Utiliza una imagen base de Node.js
+FROM node:18-alpine3.19
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copia los archivos de package.json y package-lock.json al directorio de trabajo
+COPY package*.json ./
+
+RUN npm install -g npm@10.8.2
+
+# Instala las dependencias del proyecto
+RUN npm install
+
+# Copia el resto de los archivos de la aplicación al directorio de trabajo
+COPY . .
+
+# Expone el puerto en el que se ejecutará la aplicación
+EXPOSE 4321
+
+# Comando para iniciar la aplicación en modo de desarrollo cuando se ejecute el contenedor
+CMD [ "npm", "run", "dev" ]

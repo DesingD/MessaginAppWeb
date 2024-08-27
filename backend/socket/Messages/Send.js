@@ -5,7 +5,7 @@ const SendMessage = (ws, connectedUsers) => {
     ws.on('message', async(message) => {
         const {sender_id, receiver_id, content} = JSON.parse(message);
 
-        //search chat id
+        // Search chat id
         const id_chat = await searchChat(sender_id, receiver_id);
         
         // Check if the receiver is connected
